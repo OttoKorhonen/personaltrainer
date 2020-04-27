@@ -57,7 +57,7 @@ export default function Customerlist(){
 
     return(
         <div>
-            <ReactTable defaultPageSize={10} filterable={true}
+            <ReactTable defaultPageSize={15} filterable={true}
              data={customers} columns={columns}/>
         </div>
     )

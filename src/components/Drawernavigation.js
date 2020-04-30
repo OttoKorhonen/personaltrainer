@@ -9,6 +9,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import GroupIcon from '@material-ui/icons/Group';
+import Customerlist from './Customerlist'
+import Traininglist from './Traininglist'
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles({
   list: {
@@ -19,7 +22,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function TemporaryDrawer() {
+export default function Drawernavi() {
+  const [value, setValue] = React.useState(0)
   const classes = useStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -46,19 +50,24 @@ export default function TemporaryDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Customer list', 'Training list'].map((text, index) => (
-          <ListItem button onClick={handleClick} key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <GroupIcon /> : <FitnessCenterIcon />}</ListItemIcon>
+        {['Customers'].map((text) => (
+          <ListItem button onClick={() => setValue(0)} key={text}>
+            <ListItemIcon> <GroupIcon /> </ListItemIcon>
             <ListItemText primary={text} />
           </ListItem>
         ))}
       </List>
+      <List>
+        {['Trainings'].map((text) => (
+          <ListItem button onClick={() => setValue(1)} key={text}>
+            <ListItemIcon> <FitnessCenterIcon /></ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
+      <Divider />
     </div>
   );
-
-  const handleClick = ()=>{
-    
-  }
 
   return (
     <div>
@@ -70,6 +79,11 @@ export default function TemporaryDrawer() {
           </Drawer>
         </React.Fragment>
       ))}
+      <div>
+        
+          value === 0 ? (<Customerlist />) :value === 1 ?(<Traininglist />)
+        
+      </div>
     </div>
   );
 }

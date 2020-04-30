@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
 
+
 export default function Traininglist(){
     const[trainings, setTrainings] = React.useState([]);
 
@@ -10,7 +11,7 @@ React.useEffect(()=>{
 }, [])
 
     const getTrainings = () =>{
-        fetch('https://customerrest.herokuapp.com/api/trainings')
+        fetch('https://customerrest.herokuapp.com/api/trainings') //gettrainings
         .then(response => response.json())
         .then(responseData => setTrainings(responseData.content))
         .catch(err => console.error(err))

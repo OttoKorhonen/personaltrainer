@@ -4,10 +4,8 @@ import 'react-table-v6/react-table.css'
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
-import AddIcon from '@material-ui/icons/Add';
 import EditCustomer from './EditCustomer';
-import AddCustomer from './AddCustomer'
-
+import AddCustomer from './AddCustomer';
 
 
 export default function Customerlist() {
@@ -31,6 +29,8 @@ export default function Customerlist() {
             fetch(link, { method: 'DELETE' })
                 .then(_ => getCustomers())
                 .then(_ => {
+                    console.log(link)
+                    console.log(customers)
                     setOpen(true);
                     setMsg('Customer deleted');
                 })
@@ -107,18 +107,16 @@ export default function Customerlist() {
             accessor: 'phone'
         },
         {
-            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links.href)}><DeleteIcon />Delete</IconButton>)
+            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links.href)}><DeleteIcon />Delete</IconButton>)//props.customer.links.href
         },
         {
             Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer}/>)
-        },
-        {
-            Cell: row => (<AddCustomer addCustomer={addCustomer}/>)
         }
     ]
-
+    
     return (
         <div>
+            <AddCustomer addCustomer={addCustomer}/>
             <ReactTable defaultPageSize={15} filterable={true}
                 data={customers} columns={columns} />
             <Snackbar

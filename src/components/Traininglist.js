@@ -17,6 +17,8 @@ React.useEffect(()=>{
         .catch(err => console.error(err))
     }
 
+    console.log(trainings)
+
     const columns = [
         {
             Header: 'Date',
@@ -38,26 +40,6 @@ React.useEffect(()=>{
             Header: 'Lastname',
             accessor: 'lastname'
         },
-        {
-            Header: 'Street address',
-            accessor: 'streetaddress'
-        },
-        {
-            Header: 'Post code',
-            accessor: 'postcode'
-        },
-        {
-            Header: 'City',
-            accessor: 'city'
-        },
-        {
-            Header: 'Email',
-            accessor: 'email'
-        },
-        {
-            Header: 'Phone',
-            accessor: 'phone'
-        }
     ]
 
     return(

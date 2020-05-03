@@ -11,9 +11,9 @@ React.useEffect(()=>{
 }, [])
 
     const getTrainings = () =>{
-        fetch('https://customerrest.herokuapp.com/api/trainings') //gettrainings
+        fetch('https://customerrest.herokuapp.com/gettrainings') //gettrainings
         .then(response => response.json())
-        .then(responseData => setTrainings(responseData.content))
+        .then(responseData => setTrainings(responseData))
         .catch(err => console.error(err))
     }
 
@@ -29,6 +29,34 @@ React.useEffect(()=>{
         {
             Header: 'Activity',
             accessor: 'activity'
+        },
+        {
+            Header: 'Firstname',
+            accessor: 'firstname'
+        },
+        {
+            Header: 'Lastname',
+            accessor: 'lastname'
+        },
+        {
+            Header: 'Street address',
+            accessor: 'streetaddress'
+        },
+        {
+            Header: 'Post code',
+            accessor: 'postcode'
+        },
+        {
+            Header: 'City',
+            accessor: 'city'
+        },
+        {
+            Header: 'Email',
+            accessor: 'email'
+        },
+        {
+            Header: 'Phone',
+            accessor: 'phone'
         }
     ]
 

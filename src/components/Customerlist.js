@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactTable from 'react-table-v6'
 import 'react-table-v6/react-table.css'
-import SettingsIcon from '@material-ui/icons/Settings';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
-import { Button } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import EditCustomer from './EditCustomer';
+import AddCustomer from './AddCustomer'
 
 
 
@@ -50,7 +49,7 @@ export default function Customerlist() {
         )
         .then(_ => getCustomers())
         .then(_ =>{
-            setMsg('New customer added');
+            setMsg('Customer info edited');
             setOpen(true);
         })
         .catch(err => console.error(err))
@@ -60,8 +59,25 @@ export default function Customerlist() {
         setOpen(false);
     }
 
-    const columns = [
+    const addCustomer = (customer) =>{
+        fetch('https://customerrest.herokuapp.com/api/customers',
+        {
+            method: 'POST', 
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify(customer)
+        }
+        )
+        .then(_ => getCustomers())
+        .then(_ =>{
+            setMsg('New customer added');
+            setOpen(true);
+        })
+        .catch(err => console.error(err))
+    }
 
+    const columns = [
         {
             Header: 'Firstname',
             accessor: 'firstname'
@@ -91,17 +107,13 @@ export default function Customerlist() {
             accessor: 'phone'
         },
         {
-            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links.href)}><DeleteIcon /></IconButton>)
+            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links.href)}><DeleteIcon />Delete</IconButton>)
         },
         {
-            Cell: row => (<IconButton onClick={()=> EditCustomer} color="primary" size="small">
-                <SettingsIcon />
-            </IconButton>)
+            Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer}/>)
         },
         {
-            Cell: row => (<IconButton color="primary" size="small">
-                <AddIcon />
-            </IconButton>)
+            Cell: row => (<AddCustomer addCustomer={addCustomer}/>)
         }
     ]
 

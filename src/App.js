@@ -30,7 +30,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="App">
       <AppBar position="static">
         <Toolbar>
           <IconButton onClick={handleDrawerOpen} edge="start" color="inherit" aria-label="menu">

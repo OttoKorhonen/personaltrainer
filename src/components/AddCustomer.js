@@ -6,22 +6,18 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-export default function EditCustomer(props) {
+export default function AddCustomer(props) {
     const [open, setOpen] = React.useState(false);
     const [customer, setCustomer] = React.useState({ firstname: '', lastname: '', streetaddress: '',
     postcode: '', city: '', email: '', phone: '' });
 
     const handleClickOpen = () => {
         console.log(props.customer);
-        setCustomer({firstname: props.customer.firstname, lastname: props.customer.lastname,
-            streetaddress: props.customer.streetaddress, 
-            postcode: props.customer.postcode, city: props.customer.city, 
-            email: props.customer.email, phone: props.customer.phone});
         setOpen(true);
     }
 
     const handleClose = () => {
-        props.editCustomer(props.customer.links.href, customer)//props.customer.links.customer
+        props.addCustomer(customer)
         console.log(customer)
         setOpen(false);
     }
@@ -37,10 +33,10 @@ export default function EditCustomer(props) {
     return (
         <div>
             <Button size="small" color="primary" onClick={handleClickOpen}>
-                Edit
+               New customer
       </Button>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Edit customer</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add a new customer</DialogTitle>
                 <DialogContent>
 
                     <TextField
@@ -113,7 +109,7 @@ export default function EditCustomer(props) {
                         Cancel
           </Button>
                     <Button onClick={handleClose} color="primary">
-                        Ok
+                        Add
           </Button>
                 </DialogActions>
             </Dialog>

@@ -38,43 +38,43 @@ export default function Customerlist() {
         }
     }
 
-    const editCustomer =(link, customer) =>{
+    const editCustomer = (link, customer) => {
         fetch(link, {
             method: 'PUT',
             headers: {
-                'Content-Type':'application/json'
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify(customer)
         }
         )
-        .then(_ => getCustomers())
-        .then(_ =>{
-            setMsg('Customer info edited');
-            setOpen(true);
-        })
-        .catch(err => console.error(err))
-        }
+            .then(_ => getCustomers())
+            .then(_ => {
+                setMsg('Customer info edited');
+                setOpen(true);
+            })
+            .catch(err => console.error(err))
+    }
 
     const handleClose = () => {
         setOpen(false);
     }
 
-    const addCustomer = (customer) =>{
+    const addCustomer = (customer) => {
         fetch('https://customerrest.herokuapp.com/api/customers',
-        {
-            method: 'POST', 
-            headers: {
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify(customer)
-        }
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(customer)
+            }
         )
-        .then(_ => getCustomers())
-        .then(_ =>{
-            setMsg('New customer added');
-            setOpen(true);
-        })
-        .catch(err => console.error(err))
+            .then(_ => getCustomers())
+            .then(_ => {
+                setMsg('New customer added');
+                setOpen(true);
+            })
+            .catch(err => console.error(err))
     }
 
     const columns = [
@@ -116,7 +116,7 @@ export default function Customerlist() {
     
     return (
         <div>
-            <AddCustomer addCustomer={addCustomer}/>
+            <AddCustomer addCustomer={addCustomer} />
             <ReactTable defaultPageSize={15} filterable={true}
                 data={customers} columns={columns} />
             <Snackbar

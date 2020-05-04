@@ -6,6 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditCustomer from './EditCustomer';
 import AddCustomer from './AddCustomer';
+
 import Addtraining from './Addtraining'
 import addTraining from './Addtraining'
 
@@ -109,7 +110,7 @@ export default function Customerlist() {
             accessor: 'phone'
         },
         {
-            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links.href)}><DeleteIcon />Delete</IconButton>)//props.customer.links.href
+            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links[0].href)}><DeleteIcon />Delete</IconButton>)//props.customer.links.href
         },
         {
             Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer}/>)

@@ -11,8 +11,10 @@ import Typography from '@material-ui/core/Typography';
 
 export default function AddCustomer(props) {
     const [open, setOpen] = React.useState(false);
-    const [customer, setCustomer] = React.useState({ firstname: '', lastname: '', streetaddress: '',
-    postcode: '', city: '', email: '', phone: '' });
+    const [customer, setCustomer] = React.useState({
+        firstname: '', lastname: '', streetaddress: '',
+        postcode: '', city: '', email: '', phone: ''
+    });
 
     const handleClickOpen = () => {
         console.log(props.customer);
@@ -36,12 +38,12 @@ export default function AddCustomer(props) {
     return (
         <div>
             <IconButton size="small" color="primary" onClick={handleClickOpen}>
-                <PersonAddIcon/>
+                <PersonAddIcon />
                 <Typography>
-                New customer
+                    New customer
                 </Typography>
-                    
-      </IconButton>
+
+            </IconButton>
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Add a new customer</DialogTitle>
                 <DialogContent>

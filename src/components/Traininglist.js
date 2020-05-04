@@ -34,11 +34,11 @@ export default function Traininglist() {
         },
         {
             Header: 'Firstname',
-            accessor: 'firstname'
+            accessor: 'customer.firstname'
         },
         {
             Header: 'Lastname',
-            accessor: 'lastname'
+            accessor: 'customer.lastname'
         },
     ]
 

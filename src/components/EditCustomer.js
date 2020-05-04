@@ -34,8 +34,6 @@ export default function EditCustomer(props) {
         setCustomer({ ...customer, [event.target.name]: event.target.value });
     }
 
-
-
     return (
         <div>
             <Button size="small" color="primary" onClick={handleClickOpen}>

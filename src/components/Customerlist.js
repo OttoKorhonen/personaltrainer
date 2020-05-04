@@ -6,6 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditCustomer from './EditCustomer';
 import AddCustomer from './AddCustomer';
+import Addtraining from './Addtraining'
+import addTraining from './Addtraining'
 
 
 export default function Customerlist() {
@@ -111,6 +113,9 @@ export default function Customerlist() {
         },
         {
             Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer}/>)
+        },
+        {
+            Cell: row => (<Addtraining customer={row.original} addTraining={addTraining}/>)
         }
     ]
     

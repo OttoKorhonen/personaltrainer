@@ -44,10 +44,8 @@ export default function Traininglist() {
 
     return (
         <div>
-            
             <ReactTable defaultPageSize={10} filterable={true}
                 data={trainings} columns={columns} />
-            
         </div>
     )
 }

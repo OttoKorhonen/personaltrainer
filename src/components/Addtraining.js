@@ -13,10 +13,10 @@ import { KeyboardDateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pi
 import DateFnsUtils from '@date-io/date-fns';
 
 export default function Addtraining(props) {
-    const [training, setTraining, selectedDate, handleDateChange] = React.useState({date: '', duration: '', activity: '' });
+    const [training, setTraining] = React.useState({date: Date() , duration: '', activity: '' });
     const [open, setOpen] = React.useState(false);
-    //const [selectedDate, handleDateChange] = useState(new Date());
-
+    const [selectedDate, handleDateChange] = useState(new Date());
+    
     const handleClickOpen = () => {
         console.log(props.training);
         setOpen(true);
@@ -68,7 +68,7 @@ export default function Addtraining(props) {
                         name="duration"
                         value={training.duration}
                         onChange={inputChanged}
-                        label="Duration"
+                        label="Duration (minutes)"
                         fullWidth
                     />
                     <TextField

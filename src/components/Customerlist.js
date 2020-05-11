@@ -81,20 +81,14 @@ export default function Customerlist() {
     const addTraining = (link, training) => {
         console.log(link)
         console.log(training)
-        fetch(link,
+        fetch('https://customerrest.herokuapp.com/api/trainings',
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(training)
+                body: JSON.stringify({...training, 'customer':link})
             },
-            {
-                'date': training.date,
-                'duration': training.duration,
-                'activity': training.activity,
-                'customer': link
-            }//)
         )
             .then(_ => getCustomers())
         .then(_ => {

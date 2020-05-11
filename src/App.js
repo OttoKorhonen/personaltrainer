@@ -61,23 +61,23 @@ function App() {
           </ListItem>
 
           <ListItem button button onClick={() => setValue(1)}>
-          <ListItemIcon >
+            <ListItemIcon >
               <FitnessCenterIcon />
             </ListItemIcon>
             <ListItemText primary="Training list" />
           </ListItem>
 
           <ListItem button button onClick={() => setValue(2)}>
-          <ListItemIcon >
+            <ListItemIcon >
               <CalendarTodayIcon />
             </ListItemIcon>
             <ListItemText primary="Calendar" />
           </ListItem>
         </List>
       </Drawer>
-    <div>
-      {value === 0 ? (<Customerlist/>) : value === 1 ? (<Traininglist />) : value === 2 ?(<Calendar/>): value }
-    </div>
+      <div>
+        {value === 0 ? (<Customerlist />) : value === 1 ? (<Traininglist />) : (<Calendar />) }
+      </div>
     </div>
   );
 }

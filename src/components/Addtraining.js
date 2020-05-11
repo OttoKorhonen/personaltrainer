@@ -24,7 +24,7 @@ export default function Addtraining(props) {
     }
 
     const handleClose = () => {
-        props.addTraining(training)
+        props.addTraining(props.customer.links[0].href, training)
         console.log(training)
         setOpen(false);
     }

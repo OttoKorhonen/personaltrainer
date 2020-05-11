@@ -15,6 +15,8 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import Customerlist from './components/Customerlist'
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import Traininglist from './components/Traininglist'
+import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import { Calendar } from '@material-ui/pickers';
 
 
 function App() {
@@ -64,10 +66,17 @@ function App() {
             </ListItemIcon>
             <ListItemText primary="Training list" />
           </ListItem>
+
+          <ListItem button button onClick={() => setValue(2)}>
+          <ListItemIcon >
+              <CalendarTodayIcon />
+            </ListItemIcon>
+            <ListItemText primary="Calendar" />
+          </ListItem>
         </List>
       </Drawer>
     <div>
-      {value === 0 ? (<Customerlist/>) : value === 1 ? (<Traininglist />) : value }
+      {value === 0 ? (<Customerlist/>) : value === 1 ? (<Traininglist />) : value === 2 ?(<Calendar/>): value }
     </div>
     </div>
   );

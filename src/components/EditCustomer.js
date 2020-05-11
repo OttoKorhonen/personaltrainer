@@ -21,7 +21,7 @@ export default function EditCustomer(props) {
     }
 
     const handleClose = () => {
-        props.editCustomer(props.customer.links[0].href, customer)//props.customer.links.customer
+        props.editCustomer(props.customer.links[0].href, customer)
         console.log(customer)
         setOpen(false);
     }

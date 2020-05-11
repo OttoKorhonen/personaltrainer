@@ -11,7 +11,7 @@ export default function Traininglist() {
     }, [])
 
     const getTrainings = () => {
-        fetch('https://customerrest.herokuapp.com/gettrainings') //gettrainings
+        fetch('https://customerrest.herokuapp.com/gettrainings')
             .then(response => response.json())
             .then(responseData => setTrainings(responseData))
             .catch(err => console.error(err))

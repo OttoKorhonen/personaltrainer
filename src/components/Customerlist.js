@@ -6,9 +6,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import EditCustomer from './EditCustomer';
 import AddCustomer from './AddCustomer';
-
 import Addtraining from './Addtraining'
-import addTraining from './Addtraining'
 
 
 export default function Customerlist() {
@@ -80,61 +78,87 @@ export default function Customerlist() {
             .catch(err => console.error(err))
     }
 
-    const columns = [
-        {
-            Header: 'Firstname',
-            accessor: 'firstname'
-        },
-        {
-            Header: 'Lastname',
-            accessor: 'lastname'
-        },
-        {
-            Header: 'Street address',
-            accessor: 'streetaddress'
-        },
-        {
-            Header: 'Post code',
-            accessor: 'postcode'
-        },
-        {
-            Header: 'City',
-            accessor: 'city'
-        },
-        {
-            Header: 'Email',
-            accessor: 'email'
-        },
-        {
-            Header: 'Phone',
-            accessor: 'phone'
-        },
-        {
-            Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links[0].href)}><DeleteIcon />Delete</IconButton>)//props.customer.links.href
-        },
-        {
-            Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer}/>)
-        },
-        {
-            Cell: row => (<Addtraining customer={row.original} addTraining={addTraining}/>)
-        }
-    ]
-    
-    return (
-        <div>
-            <AddCustomer addCustomer={addCustomer} />
-            <ReactTable defaultPageSize={15} filterable={true}
-                data={customers} columns={columns} />
-            <Snackbar
-                open={open}
-                autoHideDuration={3000}
-                onClose={handleClose}
-                message={msg}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center'
-                }}
-            />
-        </div>
-    )
+    const addTraining = (link, training) => {
+        console.log(link)
+        console.log(training)
+        fetch(link,
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(training)
+            },
+            {
+                'date': training.date,
+                'duration': training.duration,
+                'activity': training.activity,
+                'customer': link
+            }//)
+        )
+            .then(_ => getCustomers())
+        .then(_ => {
+            setMsg('New training added');
+            setOpen(true);
+        })
+        .catch(err => console.error(err))
+}
+
+const columns = [
+    {
+        Header: 'Firstname',
+        accessor: 'firstname'
+    },
+    {
+        Header: 'Lastname',
+        accessor: 'lastname'
+    },
+    {
+        Header: 'Street address',
+        accessor: 'streetaddress'
+    },
+    {
+        Header: 'Post code',
+        accessor: 'postcode'
+    },
+    {
+        Header: 'City',
+        accessor: 'city'
+    },
+    {
+        Header: 'Email',
+        accessor: 'email'
+    },
+    {
+        Header: 'Phone',
+        accessor: 'phone'
+    },
+    {
+        Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links[0].href)}><DeleteIcon />Delete</IconButton>)//props.customer.links.href
+    },
+    {
+        Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer} />)
+    },
+    {
+        Cell: row => (<Addtraining customer={row.original} addTraining={addTraining} />)
+    }
+]
+
+return (
+    <div>
+        <AddCustomer addCustomer={addCustomer} />
+        <ReactTable defaultPageSize={15} filterable={true}
+            data={customers} columns={columns} />
+        <Snackbar
+            open={open}
+            autoHideDuration={3000}
+            onClose={handleClose}
+            message={msg}
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center'
+            }}
+        />
+    </div>
+)
 }

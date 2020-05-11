@@ -6,19 +6,20 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
-
 import React, { useState } from "react";
 import { IconButton } from "@material-ui/core";
 import { KeyboardDateTimePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from '@date-io/date-fns';
 
 export default function Addtraining(props) {
-    const [training, setTraining] = React.useState({date: Date() , duration: '', activity: '' });
-    const [open, setOpen] = React.useState(false);
     const [selectedDate, handleDateChange] = useState(new Date());
-    
+    const [training, setTraining] = React.useState({ date: selectedDate.toISOString(), duration: '', activity: '' });
+    const [open, setOpen] = React.useState(false);
+
+
     const handleClickOpen = () => {
-        console.log(props.training);
+        console.log(props.customer.firstname, props.customer.lastname)
+        console.log(training)
         setOpen(true);
     }
 
@@ -47,7 +48,7 @@ export default function Addtraining(props) {
             </IconButton>
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Add a new training</DialogTitle>
+                <DialogTitle id="form-dialog-title">Add a new training to {props.customer.firstname} {props.customer.lastname}</DialogTitle>
                 <DialogContent>
 
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -57,7 +58,7 @@ export default function Addtraining(props) {
                             onChange={handleDateChange}
                             label="Select date and time"
                             onError={console.log}
-                            minDate={new Date("2020-04-04T00:00")}
+                            minDate={new Date(selectedDate)}
                             format="yyyy/MM/dd hh:mm a"
                         />
 

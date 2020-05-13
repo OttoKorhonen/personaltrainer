@@ -13,13 +13,15 @@ import DateFnsUtils from '@date-io/date-fns';
 
 export default function Addtraining(props) {
     const [selectedDate, handleDateChange] = useState(new Date());
-    const [training, setTraining] = React.useState({ date: selectedDate.toISOString(), duration: '', activity: '' });
+    const [training, setTraining] = React.useState({ date: new Date(selectedDate), duration: '', activity: '' });// selectedDate.toISOString() new Date(selectedDate)
     const [open, setOpen] = React.useState(false);
 
+    
 
     const handleClickOpen = () => {
         console.log(props.customer.firstname, props.customer.lastname)
         console.log(training)
+        console.log(selectedDate)
         setOpen(true);
     }
 
@@ -36,6 +38,10 @@ export default function Addtraining(props) {
     const inputChanged = (event) => {
         setTraining({ ...training, [event.target.name]: event.target.value });
     }
+
+    const d = require('moment');//koeta saada tällä päivämäärä toimimaan
+    const today = d();
+    console.log(today.format());
 
     return (
         <div>
@@ -54,12 +60,12 @@ export default function Addtraining(props) {
                     <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
                         <KeyboardDateTimePicker
-                            value={selectedDate}
+                            value={ selectedDate.toISOString()}//selectedDate
                             onChange={handleDateChange}
                             label="Select date and time"
                             onError={console.log}
-                            minDate={new Date(selectedDate)}
-                            format="yyyy/MM/dd hh:mm a"
+                            minDate={today}//new Date(selectedDate)
+                            format="yyyy-MM-dd hh:mm a"
                         />
 
                     </MuiPickersUtilsProvider>

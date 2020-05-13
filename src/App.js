@@ -67,7 +67,7 @@ function App() {
             <ListItemText primary="Training list" />
           </ListItem>
 
-          <ListItem button button onClick={() => setValue(2)}>
+          <ListItem button button onClick={() => setValue()}>
             <ListItemIcon >
               <CalendarTodayIcon />
             </ListItemIcon>

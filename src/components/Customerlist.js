@@ -30,8 +30,6 @@ export default function Customerlist() {
             fetch(link, { method: 'DELETE' })
                 .then(_ => getCustomers())
                 .then(_ => {
-                    console.log(link)
-                    console.log(customers)
                     setOpen(true);
                     setMsg('Customer deleted');
                 })
@@ -79,8 +77,6 @@ export default function Customerlist() {
     }
 
     const addTraining = (link, training) => {
-        console.log(link)
-        console.log(training)
         fetch('https://customerrest.herokuapp.com/api/trainings',
             {
                 method: 'POST',
@@ -97,6 +93,7 @@ export default function Customerlist() {
         })
         .catch(err => console.error(err))
 }
+
 
 const columns = [
     {
@@ -128,7 +125,7 @@ const columns = [
         accessor: 'phone'
     },
     {
-        Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links[0].href)}><DeleteIcon />Delete</IconButton>)//props.customer.links.href
+        Cell: row => (<IconButton color="secondary" size="small" onClick={() => deleteCustomer(row.original.links[0].href)}><DeleteIcon />Delete</IconButton>)
     },
     {
         Cell: row => (<EditCustomer customer={row.original} editCustomer={editCustomer} />)
